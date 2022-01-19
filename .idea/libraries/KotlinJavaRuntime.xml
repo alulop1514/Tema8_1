@@ -4,6 +4,10 @@
       <root url="jar://$KOTLIN_BUNDLED$/lib/kotlin-stdlib.jar!/" />
       <root url="jar://$KOTLIN_BUNDLED$/lib/kotlin-reflect.jar!/" />
       <root url="jar://$KOTLIN_BUNDLED$/lib/kotlin-test.jar!/" />
+<<<<<<< HEAD
+=======
+      <root url="jar://$USER_HOME$/Descargas/jedis-3.5.0.jar!/" />
+>>>>>>> Initial commit
     </CLASSES>
     <JAVADOC />
     <SOURCES>
