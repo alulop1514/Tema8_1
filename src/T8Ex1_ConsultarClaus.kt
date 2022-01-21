@@ -1,4 +1,5 @@
 import redis.clients.jedis.Jedis
+import java.lang.NumberFormatException
 
 fun main() {
     val con = Jedis("89.36.214.106")
@@ -12,18 +13,21 @@ fun main() {
         contador++
     }
     while (contador < 0 || contador > keys.size) {
-        println("Introdueix un numero (0 per a eixir)")
-        contador = readLine()!!.toInt()
+        try {
+            println("Introdueix un numero (0 per a eixir)")
+            contador = readLine()!!.toInt()
+        } catch (ex: NumberFormatException) {
+            println("Error: no has introducido un numero")
+        }
     }
     while (contador != 0) {
         val key = keys.elementAt(contador -1)
-
         when (con.type(key)) {
             "string" -> {
                 println("$key: ${con.get(key)}")
             }
             "hash" -> {
-                println("$key ")
+                println(key)
                 val subcamps = con.hkeys(key)
                 for (subcamp in subcamps) {
                     println("\t$subcamp --> ${con.hget(key, subcamp)}")
@@ -53,9 +57,12 @@ fun main() {
         }
         contador = -20
         while (contador < 0 || contador >= keys.size) {
-
-            println("Introdueix un numero (0 per a eixir)")
-            contador = readLine()!!.toInt()
+            try {
+                println("Introdueix un numero (0 per a eixir)")
+                contador = readLine()!!.toInt()
+            } catch (ex: NumberFormatException) {
+                println("Error: no has introducido un numero")
+            }
         }
     }
     con.close()

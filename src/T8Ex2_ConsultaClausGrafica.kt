@@ -6,22 +6,22 @@ import javax.swing.*
 
 class EstadisticaRD : JFrame() {
 
-    val etTipClau= JLabel("Tipus:")
-    val tipClau= JTextField(8)
-    val contClau = JTextArea(8,15)
+    private val etTipClau= JLabel("Tipus:")
+    private val tipClau= JTextField(8)
+    private val contClau = JTextArea(8,15)
     val con = Jedis("89.36.214.106")
-    val listModel = DefaultListModel<String>()
-    val llClaus = JList(listModel)
+    private val listModel = DefaultListModel<String>()
+    private val llClaus = JList(listModel)
 
     init {
         defaultCloseOperation = EXIT_ON_CLOSE
         setBounds(100, 100, 450, 450)
-        setLayout(FlowLayout())
+        layout = FlowLayout()
 
 
-        llClaus.setForeground(Color.blue)
+        llClaus.foreground = Color.blue
         val scroll = JScrollPane(llClaus)
-        llClaus.setVisibleRowCount(20)
+        llClaus.visibleRowCount = 20
 
         val scroll2 = JScrollPane(contClau)
 
@@ -31,14 +31,14 @@ class EstadisticaRD : JFrame() {
         add(scroll2)
 
         setSize(600, 400)
-        setVisible(true)
+        isVisible = true
 
         inicialitzar()
 
         llClaus.addListSelectionListener{valorCanviat()}
         llClaus.selectedIndex = 0
     }
-    fun inicialitzar(){
+    private fun inicialitzar(){
         con.connect()
         con.auth("ieselcaminas.ad")
         val keys = con.keys("*").toMutableList()
@@ -46,7 +46,7 @@ class EstadisticaRD : JFrame() {
             listModel.addElement(valor)
     }
 
-    fun valorCanviat() {
+    private fun valorCanviat() {
         contClau.text = ""
         val key = llClaus.selectedValue
         tipClau.text = con.type(key)
