@@ -17,10 +17,7 @@ fun main() {
     }
     while (contador != 0) {
         val key = keys.elementAt(contador -1)
-<<<<<<< HEAD
-        contador = 1
-=======
->>>>>>> Initial commit
+
         when (con.type(key)) {
             "string" -> {
                 println("$key: ${con.get(key)}")
@@ -54,12 +51,9 @@ fun main() {
                 }
             }
         }
-<<<<<<< HEAD
-        while (contador < 0 || contador > keys.size) {
-=======
         contador = -20
         while (contador < 0 || contador >= keys.size) {
->>>>>>> Initial commit
+
             println("Introdueix un numero (0 per a eixir)")
             contador = readLine()!!.toInt()
         }
