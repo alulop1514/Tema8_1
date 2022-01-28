@@ -38,6 +38,7 @@ class EstadisticaRD : JFrame() {
         llClaus.addListSelectionListener{valorCanviat()}
         llClaus.selectedIndex = 0
     }
+    // Metode per a iniciar la conexio a redis y afegir les claus a la lista
     private fun inicialitzar(){
         con.connect()
         con.auth("ieselcaminas.ad")
@@ -45,11 +46,13 @@ class EstadisticaRD : JFrame() {
         for (valor in keys.sorted())
             listModel.addElement(valor)
     }
-
+    // Metode que segons el tipus de la clau ficara el contingut a contClau
     private fun valorCanviat() {
         contClau.text = ""
         val key = llClaus.selectedValue
+        // Afegim el tipus de la clau
         tipClau.text = con.type(key)
+        // Imprirem tots els valors de la clau, tenin en conter per a ferlo el tipus
         when (con.type(key)) {
             "string" -> {
                 contClau.append(con.get(key))

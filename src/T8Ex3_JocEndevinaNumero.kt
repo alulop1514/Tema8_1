@@ -9,6 +9,7 @@ fun main() {
     val numeroAdivinar = floor(Math.random() * (100 - 1 + 1) + 1).toInt()
     var numeroUsuario = 0
     val tiempoIni = System.currentTimeMillis().toDouble()
+
     while (numeroUsuario != numeroAdivinar) {
         val numeroAnterior = numeroUsuario
         do {
